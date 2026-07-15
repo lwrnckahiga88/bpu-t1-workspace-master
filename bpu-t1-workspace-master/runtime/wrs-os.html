@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRS-OS Architecture Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --background: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+            --accent: #22c55e;
+            --danger: #ef4444;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 3rem; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+        .live-sim { margin-top: 3rem; }
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.8; }
+        .log {
+            background: #000;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            color: #22c55e;
+        }
+        .math { font-style: italic; color: var(--primary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>World Runtime Semantic OS (WRS-OS)</h1>
+            <p>Moving from Data Storage to State-Aware Belief Systems</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>1. Contradiction as Data</h3>
+                <p>Instead of resolving ambiguity, WRS-OS preserves the tension between competing hypotheses.</p>
+                <div style="height: 200px;"><canvas id="beliefChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h3>2. Temporal Decay</h3>
+                <p>Beliefs automatically lose authority over time: <span class="math">B(t+1) = B(t) · e^(-λt)</span></p>
+                <div style="height: 200px;"><canvas id="decayChart"></canvas></div>
+            </div>
+        </div>
+
+        <div class="live-sim card">
+            <h3>3. Live Simulation: Kenya Clinical Scenario</h3>
+            <p>Step through the event cycle: Statement → Lab → Decay → Bayesian Update</p>
+            <div class="grid">
+                <div>
+                    <button class="btn" onclick="runSim()">Trigger Labour Event (P004)</button>
+                    <p id="simStatus" style="margin-top: 1rem; color: var(--accent);"></p>
+                </div>
+                <div class="log" id="simLog">
+                    [SYSTEM READY] Waiting for events...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Charts Initialization
+        const beliefCtx = document.getElementById('beliefChart').getContext('2d');
+        const beliefChart = new Chart(beliefCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Malaria', 'Typhoid', 'Pneumonia'],
+                datasets: [{
+                    label: 'Belief Confidence',
+                    data: [0.45, 0.40, 0.15],
+                    backgroundColor: ['#0ea5e9', '#8b5cf6', '#64748b']
+                }]
+            },
+            options: { maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 } } }
+        });
+
+        const decayCtx = document.getElementById('decayChart').getContext('2d');
+        const decayChart = new Chart(decayCtx, {
+            type: 'line',
+            data: {
+                labels: [0, 1, 2, 3, 4, 5, 6],
+                datasets: [{
+                    label: 'Data Authority Over Days',
+                    data: [1, 0.74, 0.55, 0.41, 0.30, 0.22, 0.16],
+                    borderColor: '#22c55e',
+                    fill: false
+                }]
+            },
+            options: { maintainAspectRatio: false }
+        });
+
+        function log(msg, color = '#22c55e') {
+            const el = document.getElementById('simLog');
+            const span = document.createElement('div');
+            span.style.color = color;
+            span.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            el.prepend(span);
+        }
+
+        async function runSim() {
+            document.getElementById('simStatus').textContent = "Simulation running...";
+            log("EVENT: Patient P004 states 'Severe Fever'", "#0ea5e9");
+            await new Promise(r => setTimeout(r, 1000));
+            log("RUNTIME: State S(t) updated. Ambiguity preserved (Malaria vs Typhoid).", "#8b5cf6");
+            await new Promise(r => setTimeout(r, 1000));
+            log("ADAPTER: HL7 Lab result received: Parasites NOT DETECTED.", "#22c55e");
+            await new Promise(r => setTimeout(r, 1000));
+            log("ENGINE: Applying Bayesian Update. Malaria confidence dropped.", "#ef4444");
+            beliefChart.data.datasets[0].data = [0.10, 0.75, 0.15];
+            beliefChart.update();
+            log("RESULT: Typhoid hypothesis strengthened based on context S(t).", "#22c55e");
+            document.getElementById('simStatus').textContent = "Simulation complete.";
+        }
+    </script>
+</body>
+</html>

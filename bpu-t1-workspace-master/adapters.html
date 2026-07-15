@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adapter Registry | WRS-OS Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
+        .adapter-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            transition: all 0.3s ease;
+        }
+        .adapter-card:hover {
+            border-color: rgba(34, 197, 94, 0.4);
+            transform: translateY(-4px);
+        }
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .verified { background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.2); }
+    </style>
+</head>
+<body class="p-6 md:p-12 min-h-screen">
+    <header class="max-w-6xl mx-auto mb-12 flex justify-between items-end">
+        <div>
+            <a href="index.html" class="text-sky-400 text-sm font-bold hover:underline mb-2 block">&larr; Master Portal</a>
+            <h1 class="text-4xl font-extrabold">Adapter Registry</h1>
+            <p class="text-slate-400 mt-2">Certified plug-ins for the World Runtime Semantic OS.</p>
+        </div>
+        <div class="hidden md:block">
+            <span class="text-xs text-slate-500 font-bold uppercase tracking-widest">Protocol Version</span>
+            <p class="text-sky-400 font-mono font-bold">BPU-T1-FED-01</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Adapter Cards -->
+        <div class="adapter-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <div class="text-3xl">🏥</div>
+                <span class="status-badge verified">Verified</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">Monitoring</h3>
+            <p class="text-slate-400 text-xs mb-4">Real-time patient vitals & telemetry ingestion.</p>
+            <a href="https://github.com/lwrnckahiga88/bpu-adapter-monitoring" class="text-sky-400 text-xs font-bold hover:underline">View Source &rarr;</a>
+        </div>
+
+        <div class="adapter-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <div class="text-3xl">📈</div>
+                <span class="status-badge verified">Verified</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">Partograph</h3>
+            <p class="text-slate-400 text-xs mb-4">WHO-standardized labor progress tracking.</p>
+            <a href="https://github.com/lwrnckahiga88/bpu-adapter-partograph" class="text-sky-400 text-xs font-bold hover:underline">View Source &rarr;</a>
+        </div>
+
+        <div class="adapter-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <div class="text-3xl">📋</div>
+                <span class="status-badge verified">Verified</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">Orders</h3>
+            <p class="text-slate-400 text-xs mb-4">Medication & lab request synchronization.</p>
+            <a href="https://github.com/lwrnckahiga88/bpu-adapter-orders" class="text-sky-400 text-xs font-bold hover:underline">View Source &rarr;</a>
+        </div>
+
+        <div class="adapter-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <div class="text-3xl">📊</div>
+                <span class="status-badge verified">Verified</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">Analytics</h3>
+            <p class="text-slate-400 text-xs mb-4">Population health & trend analysis engine.</p>
+            <a href="https://github.com/lwrnckahiga88/bpu-adapter-analytics" class="text-sky-400 text-xs font-bold hover:underline">View Source &rarr;</a>
+        </div>
+
+        <div class="adapter-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <div class="text-3xl">☁️</div>
+                <span class="status-badge verified">Verified</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">OpenMRS</h3>
+            <p class="text-slate-400 text-xs mb-4">Bi-directional FHIR/HL7 EMR synchronization.</p>
+            <a href="https://github.com/lwrnckahiga88/bpu-adapter-openmrs" class="text-sky-400 text-xs font-bold hover:underline">View Source &rarr;</a>
+        </div>
+
+        <div class="adapter-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <div class="text-3xl">📱</div>
+                <span class="status-badge verified">Verified</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">MobileSync</h3>
+            <p class="text-slate-400 text-xs mb-4">Push notifications & USSD gateway bridging.</p>
+            <a href="https://github.com/lwrnckahiga88/bpu-adapter-mobilesync" class="text-sky-400 text-xs font-bold hover:underline">View Source &rarr;</a>
+        </div>
+
+        <div class="adapter-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <div class="text-3xl">🦷</div>
+                <span class="status-badge verified">Verified</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">BLE Devices</h3>
+            <p class="text-slate-400 text-xs mb-4">Bluetooth Low Energy hardware integration.</p>
+            <a href="https://github.com/lwrnckahiga88/bpu-adapter-ble" class="text-sky-400 text-xs font-bold hover:underline">View Source &rarr;</a>
+        </div>
+
+        <div class="adapter-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <div class="text-3xl">🛡️</div>
+                <span class="status-badge verified">Verified</span>
+            </div>
+            <h3 class="text-lg font-bold mb-1">Audit</h3>
+            <p class="text-slate-400 text-xs mb-4">Immutable event logging & policy enforcement.</p>
+            <a href="https://github.com/lwrnckahiga88/bpu-adapter-audit" class="text-sky-400 text-xs font-bold hover:underline">View Source &rarr;</a>
+        </div>
+    </main>
+
+    <footer class="max-w-6xl mx-auto mt-20 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+        World Runtime Semantic OS &copy; 2026 | Built for Juakali StudioOS
+    </footer>
+</body>
+</html>

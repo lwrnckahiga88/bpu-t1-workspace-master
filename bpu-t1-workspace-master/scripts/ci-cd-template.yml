@@ -1,0 +1,30 @@
+name: BPU-T1 CI/CD
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Validate HTML
+        run: |
+          test -f runtime/index.html
+          grep -q "<title>" runtime/index.html
+
+      - name: Run Deployment Script
+        run: |
+          chmod +x scripts/deploy.sh
+          ./scripts/deploy.sh
+
+      - name: Archive Production Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: bpu-t1-runtime-dist
+          path: dist/

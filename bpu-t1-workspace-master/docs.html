@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRS-OS Documentation | System Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
+        .sidebar { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border-right: 1px solid rgba(14, 165, 233, 0.2); }
+        .doc-content h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem; color: #38bdf8; }
+        .doc-content h2 { font-size: 1.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; color: #f1f5f9; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.5rem; }
+        .doc-content h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #38bdf8; }
+        .doc-content p { color: #94a3b8; margin-bottom: 1.25rem; line-height: 1.8; }
+        .doc-content ul { list-style: disc; padding-left: 1.5rem; color: #94a3b8; margin-bottom: 1.5rem; }
+        .doc-content li { margin-bottom: 0.5rem; }
+        code { background: rgba(14, 165, 233, 0.1); color: #38bdf8; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+        .nav-link { display: block; padding: 0.5rem 1rem; color: #94a3b8; border-radius: 8px; transition: all 0.2s; }
+        .nav-link:hover { background: rgba(14, 165, 233, 0.1); color: #38bdf8; }
+    </style>
+</head>
+<body class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="sidebar w-72 p-6 sticky top-0 h-screen overflow-y-auto hidden md:block">
+        <a href="index.html" class="text-xl font-extrabold text-sky-400 mb-10 block">WRS-OS Docs</a>
+        <nav class="space-y-2">
+            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Architecture</p>
+            <a href="#overview" class="nav-link">Overview</a>
+            <a href="#semantic-stack" class="nav-link">The Semantic Stack</a>
+            <a href="#belief-engine" class="nav-link">Belief Engine (Layer 4)</a>
+            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mt-8 mb-4">Components</p>
+            <a href="#adapters" class="nav-link">Adapter Layer</a>
+            <a href="#sig" class="nav-link">StudioOS Insight Graph</a>
+            <a href="#portal" class="nav-link">Master Portal</a>
+        </nav>
+    </aside>
+
+    <!-- Content -->
+    <main class="flex-grow p-8 md:p-16 max-w-4xl mx-auto doc-content">
+        <section id="overview">
+            <h1>System Documentation</h1>
+            <p>The **World Runtime Semantic OS (WRS-OS)** is a state-aware operating system that treats meaning as a function of the runtime state <code>S(t)</code>. It moves beyond static data storage to a dynamic belief system designed for complex clinical reasoning.</p>
+        </section>
+
+        <section id="semantic-stack">
+            <h2>The Semantic Stack</h2>
+            <p>WRS-OS evolves the traditional model into a five-layer semantic stack:</p>
+            <ul>
+                <li><strong>Layer 1: Ingestion (Adapters)</strong> - Standardized streams (FHIR, HL7, DICOM) mapped to the ontological framework.</li>
+                <li><strong>Layer 2: EventBus</strong> - State-aware broadcasting that updates the global state <code>S(t)</code>.</li>
+                <li><strong>Layer 3: Policy Engine</strong> - Enforces security and participation rules.</li>
+                <li><strong>Layer 4: Belief Engine</strong> - Bayesian updates and temporal decay logic.</li>
+                <li><strong>Layer 5: Insight (SIG)</strong> - Intelligence layer for operational truth streams.</li>
+            </ul>
+        </section>
+
+        <section id="belief-engine">
+            <h2>Belief Engine (Layer 4)</h2>
+            <p>The Belief Engine handles contradictions by maintaining a probability distribution across hypotheses. It mirrors real clinical reasoning where multiple hypotheses are held simultaneously.</p>
+            <h3>Temporal Decay</h3>
+            <p>Beliefs automatically lose authority over time using the native decay function:</p>
+            <p><code>B(t+1) = B(t) * e^(-λt)</code></p>
+            <p>This ensures the system has a native understanding of data staleness without manual engineering.</p>
+        </section>
+
+        <section id="adapters">
+            <h2>Adapter Layer</h2>
+            <p>Adapters are independent modules that bridge external systems to the Runtime. Every certified adapter implements a standardized contract:</p>
+            <ul>
+                <li><code>connect()</code>: Establish secure channel.</li>
+                <li><code>read()</code>: Pull data from external source.</li>
+                <li><code>write()</code>: Push updates back to source.</li>
+                <li><code>health()</code>: Report status to the NodeRegistry.</li>
+            </ul>
+        </section>
+
+        <section id="sig">
+            <h2>StudioOS Insight Graph (SIG)</h2>
+            <p>SIG analyzes real-world operational truth streams. It detects Risk Clusters, Opportunity Clusters, and Bottleneck Clusters, providing high-confidence recommendations for system-wide intervention.</p>
+        </section>
+
+        <footer class="mt-20 pt-8 border-t border-slate-800 text-slate-500 text-sm">
+            <a href="index.html" class="text-sky-400 hover:underline">&larr; Back to Master Portal</a>
+            <p class="mt-4">World Runtime Semantic OS &copy; 2026</p>
+        </footer>
+    </main>
+</body>
+</html>
